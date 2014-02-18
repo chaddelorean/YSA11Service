@@ -1,3 +1,4 @@
+<?php include "mysqlconnect.php"; ?>
 <!DOCTYPE HTML>
 <!--
 	Minimaxing 3.1 by HTML5 UP
@@ -15,6 +16,8 @@
 		<script src="js/config.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="js/scripts.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -30,16 +33,7 @@
 				<div class="row">
 					<div class="12u">
 						
-						<header id="header">
-							<h1><a href="#" id="logo">Service Opportunities</a></h1>
-							<nav id="nav">
-								<a href="index.php" class="current-page-item">Homepage</a>
-								<a href="events.php">Events</a>
-								<a href="bulletin.php">Bulletin</a>
-								<a href="requests.php">Service Requests</a>
-								<a href="about.php">About</a>
-							</nav>
-						</header>
+						<?php include "nav.php"; ?>
 					
 					</div>
 				</div>
@@ -51,8 +45,8 @@
 					<div class="12u">
 					
 						<div id="banner">
-							<h2>Put something cool here!</h2>
-							<span>And put something almost as cool here, but a bit longer ...</span>
+							<h2>Have I Done Any Good?</h2>
+							<span>"Spiritual strength frequently comes through selfless service." -President Monson, April 2010</span>
 						</div>
 				
 					</div>
@@ -65,11 +59,11 @@
 					<div class="4u">
 						
 						<section>
-							<h2>Welcome to Minimaxing!</h2>
-							<p>This is <strong>Minimaxing</strong>, a fully responsive HTML5 site template designed by <a href="http://n33.co">n33</a> and released for free by <a href="http://html5up.net">HTML5 UP</a>. It features
-							a simple, lightweight design, solid HTML5 and CSS3 code, and full responsive support for desktop, tablet, and mobile displays.</p>
+							<h2>Upcoming Service Opportunities:</h2>
+							<p>The service comity of the YSA 11th Stake often plans many service projects throughout the year. These projects are great opportunities
+								to help out in our community. Click the button below to view and signup for a service project.</p>
 							<footer class="controls">
-								<a href="http://html5up.net" class="button">More cool designs ...</a>
+								<a href="projects.php" class="button">Service Projects</a>
 							</footer>
 						</section>
 					
@@ -77,47 +71,32 @@
 					<div class="4u">
 						
 						<section>
-							<h2>Who are you guys?</h2>
-							<ul class="small-image-list">
-								<li>
-									<a href="#"><img src="images/pic2.jpg" alt="" class="left" /></a>
-									<h4>Jane Anderson</h4>
-									<p>Varius nibh. Suspendisse vitae magna eget et amet mollis justo facilisis amet quis.</p>
-								</li>
-								<li>
-									<a href="#"><img src="images/pic1.jpg" alt="" class="left" /></a>
-									<h4>James Doe</h4>
-									<p>Vitae magna eget odio amet mollis justo facilisis amet quis. Sed sagittis consequat.</p>
-								</li>
-							</ul>
+							<h2>Have a service need?</h2>
+							<p>If you have a service project please click the button below and fill out a service request form.
+								The request will be forwarded to your wards service co-chair. They will be in contact with you soon to plan out your service project.</p>
+							<footer class="controls">
+								<a href="requests.php" class="button">Service Requests</a>
+							</footer>
 						</section>
 					
 					</div>
 					<div class="4u">
 					
 						<section>
-							<h2>How about some links?</h2>
-							<div>
-								<div class="row">
-									<div class="6u">
-										<ul class="link-list">
-											<li><a href="#">Sed neque nisi consequat</a></li>
-											<li><a href="#">Dapibus sed mattis blandit</a></li>
-											<li><a href="#">Quis accumsan lorem</a></li>
-											<li><a href="#">Suspendisse varius ipsum</a></li>
-											<li><a href="#">Eget et amet consequat</a></li>
-										</ul>
-									</div>
-									<div class="6u">
-										<ul class="link-list">
-											<li><a href="#">Quis accumsan lorem</a></li>
-											<li><a href="#">Sed neque nisi consequat</a></li>
-											<li><a href="#">Eget et amet consequat</a></li>
-											<li><a href="#">Dapibus sed mattis blandit</a></li>
-											<li><a href="#">Vitae magna sed dolore</a></li>
-										</ul>
-									</div>
-								</div>
+							<h2>Service News:</h2>
+							<div id="news">
+								<?php
+								$results = mysqli_query($con, "call sp_getEvents();");
+								while ($row = mysqli_fetch_array($results)){
+									echo "<input id='eventID' type='hidden' value='",$row['EventID'],"'/>";
+									echo "<p><strong>Upcoming Event: </strong>" . $row['Event_Name']."</p>";
+									echo "<p><strong>Event Date: </strong>" . $row['date']."</p>";
+									if ($row['time'] != "00:00"){
+										echo "<p><strong>Start Time: </strong>". $row['time']."</p>";
+									}
+									echo "<p><strong>Ward: </strong>". $row['Ward_Name']."</p>";
+								}
+								?>
 							</div>
 						</section>
 
@@ -127,141 +106,14 @@
 					<div class="6u">
 					
 						<section>
-							<h2>An assortment of pictures and text</h2>
-							<p>Duis neque nisi, dapibus sed mattis quis, rutrum et accumsan. 
-							Suspendisse nibh. Suspendisse vitae magna eget odio amet mollis 
-							justo facilisis quis. Sed sagittis mauris amet tellus gravida 
-							lorem ipsum dolor sit amet consequat blandit lorem ipsum dolor 
-							sit amet consequat sed dolore.</p>
-							<ul class="big-image-list">
-								<li>
-									<a href="#"><img src="images/pic3.jpg" alt="" class="left" /></a>
-									<h3>Magna Gravida Dolore</h3>
-									<p>Varius nibh. Suspendisse vitae magna eget et amet mollis justo 
-									facilisis amet quis consectetur in, sollicitudin vitae justo. Cras 
-									Maecenas eu arcu purus, phasellus fermentum elit.</p>
-								</li>
-								<li>
-									<a href="#"><img src="images/pic4.jpg" alt="" class="left" /></a>
-									<h3>Magna Gravida Dolore</h3>
-									<p>Varius nibh. Suspendisse vitae magna eget et amet mollis justo 
-									facilisis amet quis consectetur in, sollicitudin vitae justo. Cras 
-									Maecenas eu arcu purus, phasellus fermentum elit.</p>
-								</li>
-								<li>
-									<a href="#"><img src="images/pic5.jpg" alt="" class="left" /></a>
-									<h3>Magna Gravida Dolore</h3>
-									<p>Varius nibh. Suspendisse vitae magna eget et amet mollis justo 
-									facilisis amet quis consectetur in, sollicitudin vitae justo. Cras 
-									Maecenas eu arcu purus, phasellus fermentum elit.</p>
-								</li>
-							</ul>
-						</section>
-
+							<h2>Bulletin Preview</h2>
+							<p>Some of the highlightes of our recent service activities: </p>
+							
 					</div>
-					<div class="6u">
-					
-						<article class="blog-post">
-							<h2>Just another blog post</h2>
-							<a class="comments" href="#">33 comments</a>
-							<a href="#"><img src="images/pic6.jpg" alt="" class="top blog-post-image" /></a>
-							<h3>Magna Gravida Dolore</h3>
-							<p>Aenean non massa sapien. In hac habitasse platea dictumst. 
-							Maecenas sodales purus et nulla sodales aliquam. Aenean ac 
-							porttitor metus. In hac habitasse platea dictumst. Phasellus 
-							blandit turpis in leo scelerisque mollis. Nulla venenatis 
-							ipsum nec est porta rhoncus. Mauris sodales sed pharetra 
-							nisi nec consectetur. Cras elit magna, hendrerit nec 
-							consectetur in, sollicitudin vitae justo. Cras amet aliquet 
-							Aliquam ligula turpis, feugiat id fermentum malesuada, 
-							rutrum eget turpis. Mauris sodales sed pharetra nisi nec 
-							consectetur. Cras elit magna, hendrerit nec consectetur 
-							in sollicitudin vitae.</p>
-							<footer class="controls">
-								<a href="#" class="button">Continue Reading</a>
-							</footer>
-						</article>
-
-					</div>
-				</div>
 			</div>
 		</div>
-		<div id="footer-wrapper">
-			<div class="container">
-				<div class="row">
-					<div class="8u">
-						
-						<section>
-							<h2>How about a truckload of links?</h2>
-							<div>
-								<div class="row">
-									<div class="3u">
-										<ul class="link-list">
-											<li><a href="#">Sed neque nisi consequat</a></li>
-											<li><a href="#">Dapibus sed mattis blandit</a></li>
-											<li><a href="#">Quis accumsan lorem</a></li>
-											<li><a href="#">Suspendisse varius ipsum</a></li>
-											<li><a href="#">Eget et amet consequat</a></li>
-										</ul>
-									</div>
-									<div class="3u">
-										<ul class="link-list">
-											<li><a href="#">Quis accumsan lorem</a></li>
-											<li><a href="#">Sed neque nisi consequat</a></li>
-											<li><a href="#">Eget et amet consequat</a></li>
-											<li><a href="#">Dapibus sed mattis blandit</a></li>
-											<li><a href="#">Vitae magna sed dolore</a></li>
-										</ul>
-									</div>
-									<div class="3u">
-										<ul class="link-list">
-											<li><a href="#">Sed neque nisi consequat</a></li>
-											<li><a href="#">Dapibus sed mattis blandit</a></li>
-											<li><a href="#">Quis accumsan lorem</a></li>
-											<li><a href="#">Suspendisse varius ipsum</a></li>
-											<li><a href="#">Eget et amet consequat</a></li>
-										</ul>
-									</div>
-									<div class="3u">
-										<ul class="link-list">
-											<li><a href="#">Quis accumsan lorem</a></li>
-											<li><a href="#">Sed neque nisi consequat</a></li>
-											<li><a href="#">Eget et amet consequat</a></li>
-											<li><a href="#">Dapibus sed mattis blandit</a></li>
-											<li><a href="#">Vitae magna sed dolore</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</section>
-					
-					</div>
-					<div class="4u">
-
-						<section>
-							<h2>Something of interest</h2>
-							<p>Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. 
-							Suspendisse eu varius nibh. Suspendisse vitae magna eget odio amet 
-							mollis justo facilisis quis. Sed sagittis mauris amet tellus gravida
-							lorem ipsum dolor sit amet consequat blandit.</p>
-							<footer class="controls">
-								<a href="#" class="button">Oh, please continue ....</a>
-							</footer>
-						</section>
-
-					</div>
-				</div>
-				<div class="row">
-					<div class="12u">
-
-						<div id="copyright">
-							&copy; Untitled. All rights reserved. | Design: <a href="http://html5up.net">HTML5 UP</a> | Images: <a href="http://fotogrph.com">fotogrph</a>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
+		<?php include "footer.php"; ?>
 	<!-- ********************************************************* -->
 	</body>
 </html>
+<?php mysqli_close($con); ?>

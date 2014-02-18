@@ -11,7 +11,10 @@
 /* Basic */
 
 	*,*:before,*:after{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;-o-box-sizing:content-box;-ms-box-sizing:content-box;box-sizing:content-box}
-
+	
+	#news{
+		cursor: pointer;
+	}
 	body {
 		font-size: 13.5pt;
 		font-family: sans-serif;

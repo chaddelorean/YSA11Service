@@ -12,12 +12,9 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link href="http://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet">
-		<script src="js/jquery.min.js"></script>
 		<script src="js/config.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-panels.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="js/scripts.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -108,7 +105,16 @@
 						<section>
 							<h2>Bulletin Preview</h2>
 							<p>Some of the highlightes of our recent service activities: </p>
-							
+							<div ng-app="YSA11Service">
+								<div ng-controller="homePageCtrl">
+									<div ng-repeat="picture in clipBoard">
+										Ward: {{picture.WardID}} <br />
+										{{picture.Clipboard_Description}} <br />
+										<image src="{{picture.Clipboard_PictureURL}}"/>								
+									</div>
+								</div>
+							</div>
+
 					</div>
 			</div>
 		</div>
@@ -117,3 +123,6 @@
 	</body>
 </html>
 <?php mysqli_close($con); ?>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/scripts.js"></script>

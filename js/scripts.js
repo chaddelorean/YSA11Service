@@ -7,3 +7,11 @@ $(function(){
 		$eventID = $('#eventID').val();
 	});
 });
+
+var YSA11Service = angular.module('YSA11Service', []);
+
+YSA11Service.controller('homePageCtrl', function($scope, $http) {
+	$http.get('clipBoard.php').success(function (data) {
+		$scope.clipBoard = data;
+	});
+});

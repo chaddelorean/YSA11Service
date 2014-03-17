@@ -100,20 +100,19 @@
 					</div>
 				</div>
 				<div class="row main-row">
-					<div class="6u">
+					<div>
 					
-						<section>
-							<h2>Bulletin Preview</h2>
-							<p>Some of the highlightes of our recent service activities: </p>
-							<div ng-app="YSA11Service">
-								<div ng-controller="homePageCtrl">
-									<div ng-repeat="picture in clipBoard">
-										Ward: {{picture.WardID}} <br />
-										{{picture.Clipboard_Description}} <br />
-										<image src="{{picture.Clipboard_PictureURL}}"/>								
-									</div>
+						<h2>Bulletin Preview</h2>
+						<p>Some of the highlightes of our recent service activities: </p>
+						<div ng-app="YSA11Service">
+							<div ng-controller="homePageCtrl" class="clipBoardContainer">
+								<div class="clipboardImage" ng-repeat="picture in clipBoard">
+									Ward: {{picture.Ward_Name}} <br />
+									{{picture.Clipboard_Description}} <br />
+									<image src="{{picture.Clipboard_PictureURL}}"/>								
 								</div>
 							</div>
+						</div>
 
 					</div>
 			</div>

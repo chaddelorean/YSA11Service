@@ -164,3 +164,29 @@
 		background-image: linear-gradient(top, #1b9fbe, #118eb1);
 		box-shadow: inset 0px 0px 0px 1px #3ecceb;
 	}
+	
+	.clipboardImage {
+		width: 30%;
+		height: auto;
+		border: solid black 1px;
+		padding: 3px;
+		vertical-align: top;
+    	display: inline-block;
+    	*display: inline;
+    	margin: 5px;
+    	min-height: 200px;
+		/*margin: 0 auto;*/
+	}
+	
+	.clipboardImage img {
+		width: 95%; 
+		height: auto;
+		margin: 5px;
+		margin-top: 8%;
+	}
+	
+	.clipBoardContainer {
+		width: 100%;
+		height: auto;
+		float: left;
+	}

@@ -60,7 +60,7 @@
 							<p>The service comity of the YSA 11th Stake often plans many service projects throughout the year. These projects are great opportunities
 								to help out in our community. Click the button below to view and signup for a service project.</p>
 							<footer class="controls">
-								<a href="projects.php" class="button">Service Projects</a>
+								<a href="serviceList.html" class="button">Service Projects</a>
 							</footer>
 						</section>
 					

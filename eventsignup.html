@@ -23,7 +23,7 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
 	</head>
-	<body ng-controller="serviceListingCtrl">
+	<body ng-controller="eventSignupCtrl">
 	<!-- ********************************************************* -->
 		<div id="header-wrapper">
 			<div class="container">
@@ -41,15 +41,7 @@
 					<div class="8u">
 						
 						<section class="left-content">
-							<h2>Upcoming Service Projects:</h2>
-							<p>Below are the current service projects happening in the stake.</p>
-							<ul>
-								<li class="eventLink" ng-repeat="event in events" ng-click="goToEventSignup(event.EventID)">
-									<h3>{{event.Event_Name}}</h3>
-									<h4>{{event.date}} &nbsp; {{event.time}}</h4>
-									<h4>{{event.Ward_Name}}</h4>
-								</li>
-							</ul>
+							{{id}}
 						</section>
 					
 					</div>

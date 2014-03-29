@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<!--
+	Minimaxing 3.1 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html ng-app="YSA11Service">
+	<head>
+		<title>SA 11th Stake Service</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/skel.min.js"></script>
+		<script src="js/skel-panels.min.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-desktop.css" />
+		</noscript>
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+	</head>
+	<body ng-controller="photoUploadToolCtrl">
+	<!-- ********************************************************* -->
+		<div id="header-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="12u">
+						<div ng-include src="'nav.php'"></div>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="main">
+			<div class="container">
+				<div class="row main-row">
+					<div class="8u">
+						
+						<section class="left-content">
+							<h2>Use this tool to upload photos to the website</h2>
+							Password: <input type="text" placeholder="Enter password" ng-model="password"/>
+								<ul class="filechooser">
+									<li>
+										Select multiple images: <input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" />
+									</li>
+									<li>
+										<div id="dropbox" class="dropbox" ng-class="dropClass"><span>{{dropText}}</span></div>
+									</li>
+									<li ng-show="files.length">
+									    <div ng-repeat="file in files.slice(0)">
+									        <span>{{file.webkitRelativePath || file.name}}</span>
+									        (<span ng-switch="file.size > 1024*1024">
+									            <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+									            <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+									        </span>)
+									</li>
+									<li>
+										<input type="button" ng-click="uploadFile()" value="Upload" />
+									</li>
+									<li ng-show="progressVisible">
+								            <div class="percent">{{progress}}%</div>
+								            <div class="progress-bar">
+								                <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+								            </div>
+									</li>
+								</ul>
+							<form>
+								<!-- <ul>
+									<li ng-repeat="">
+										<img src="" class="imageBox">
+										Image Description: <input type="text" placeholder="Enter in this photos description"/>
+										Ward: <input type="text" placeholder="Whats your ward?"/>
+									</li>
+								</ul> -->
+							</form>
+						</section>
+							
+					</div>
+					<div class="4u">
+
+						<section>
+							<h2>Who are you guys?</h2>
+							<ul class="small-image-list">
+								<li>
+									<a href="#"><img src="images/pic2.jpg" alt="" class="left" /></a>
+									<h4>Jane Anderson</h4>
+									<p>Varius nibh. Suspendisse vitae magna eget et amet mollis justo facilisis amet quis.</p>
+								</li>
+								<li>
+									<a href="#"><img src="images/pic1.jpg" alt="" class="left" /></a>
+									<h4>James Doe</h4>
+									<p>Vitae magna eget odio amet mollis justo facilisis amet quis. Sed sagittis consequat.</p>
+								</li>
+							</ul>
+						</section>
+					
+						<section>
+							<h2>How about some links?</h2>
+							<div>
+								<div class="row">
+									<div class="6u">
+										<ul class="link-list">
+											<li><a href="#">Sed neque nisi consequat</a></li>
+											<li><a href="#">Dapibus sed mattis blandit</a></li>
+											<li><a href="#">Quis accumsan lorem</a></li>
+											<li><a href="#">Suspendisse varius ipsum</a></li>
+											<li><a href="#">Eget et amet consequat</a></li>
+										</ul>
+									</div>
+									<div class="6u">
+										<ul class="link-list">
+											<li><a href="#">Quis accumsan lorem</a></li>
+											<li><a href="#">Sed neque nisi consequat</a></li>
+											<li><a href="#">Eget et amet consequat</a></li>
+											<li><a href="#">Dapibus sed mattis blandit</a></li>
+											<li><a href="#">Vitae magna sed dolore</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</section>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-include src="'footer.php'"></div>
+	<!-- ********************************************************* -->
+	</body>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/scripts.js"></script>
+</html>
